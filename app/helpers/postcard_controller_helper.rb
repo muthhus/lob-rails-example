@@ -1,0 +1,2 @@
+module PostcardControllerHelper
+end
