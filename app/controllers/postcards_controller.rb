@@ -8,8 +8,9 @@ class PostcardsController < ApplicationController
   def create
     template_file = ERB.new(File.open(File.join(Rails.root, 'app', 'views', 'postcards', 'postcard_front.html.erb')).read)
     custom_html = template_file.result(binding)
+
     @results = LOB.postcards.create(
-      name: "Demo Postcard job",
+      name: "Demo Postcard",
       to: {
         name: params[:postcards][:to_name],
         address_line1: params[:postcards][:to_address_line1],
@@ -28,7 +29,6 @@ class PostcardsController < ApplicationController
       },
       front: custom_html,
       message: params[:postcards][:message],
-      setting: 1001,
       full_bleed: 1
     )
   end
